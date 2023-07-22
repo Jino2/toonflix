@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/widgets/webtoon_widget.dart';
 
 import '../models/webtoon_model.dart';
 import '../services/api_service.dart';
@@ -54,34 +55,8 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       itemBuilder: (context, index) {
         final webtoon = snapshot.data![index];
-        return Column(
-          children: [
-            Container(
-                width: 200,
-                height: 300,
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 1,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Image.network(webtoon.thumbnail)),
-            const SizedBox(
-              height: 14,
-            ),
-            Text(
-              webtoon.title,
-              style: TextStyle(
-                fontSize: 22,
-              ),
-            ),
-          ],
+        return WebtoonCard(
+          webtoon: webtoon,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(width: 40),
